@@ -1,4 +1,4 @@
-# My Data Structure and Algorithm Questions and Solutions
+## My Data Structure and Algorithm Questions and Solutions
 Hey guys, this is my collection of data structure and algorithm questions and solutions. I will be adding more questions and solutions as I solve them. I hope this collection helps you in your preparation for interviews and competitive programming.
 
 ## Table of Contents
