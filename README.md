@@ -5,6 +5,7 @@ Hey guys, this is my collection of data structure and algorithm questions and so
 
 1. [Arrays](#arrays)
 - [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/description/)
+- [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description)
 
 2. [Strings](#strings)
 3. [Linked Lists](#linked-lists)
