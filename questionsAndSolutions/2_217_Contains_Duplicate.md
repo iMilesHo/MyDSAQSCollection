@@ -1,5 +1,4 @@
-## [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description)
-
+## 217. Contains Duplicate
 ### Problem Statement
 Check the problem statement [here](https://leetcode.com/problems/contains-duplicate/description).
 

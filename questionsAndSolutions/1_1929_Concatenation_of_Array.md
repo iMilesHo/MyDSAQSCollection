@@ -1,4 +1,4 @@
-## [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/description/)
+## 1929. Concatenation of Array
 
 ### Problem Statement
 Check the problem statement [here](https://leetcode.com/problems/concatenation-of-array/description/).

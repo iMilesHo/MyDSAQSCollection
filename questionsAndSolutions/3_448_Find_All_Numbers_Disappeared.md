@@ -1,4 +1,4 @@
-## [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/)
+## 448. Find All Numbers Disappeared in an Array
 
 ### Problem Statement
 Check the problem statement [here](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/).
