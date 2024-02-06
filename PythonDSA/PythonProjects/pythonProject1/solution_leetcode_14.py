@@ -2,23 +2,28 @@ from typing import List
 import unittest
 
 class Solution:
-    def longestCommonPrefixBetween(self, str1: str, str2: str) -> str:
-        ans = ""
-        for i in range(min(len(str1), len(str2))):
-            if str1[i] == str2[i]:
-                ans += str1[i]
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        dict_s = {}
+        dict_t = {}
+
+        for i in s:
+            if dict_s.get(i) is None:
+                dict_s[i] = 1
             else:
-                return ans
-        return ans
+                dict_s[i] += 1
 
-    def longestCommonPrefix(self, strs: List[str]) -> str:
-        if len(strs) == 1:
-            return strs[0]
+        for i in t:
+            if dict_t.get(i) is None:
+                dict_s[i] = 1
+            else:
+                dict_t[i] += 1
 
-        temp = strs[0]
-        for i in range(1, len(strs)):
-            temp = self.longestCommonPrefixBetween(temp, strs[i])
-        return temp
+        for key in dict_s:
+            if (dict_t[key] is None) or (dict_t[key] != dict_s[key]):
+                return false
+        return true
 
 # Unit test for Solution class
 class TestSolution(unittest.TestCase):
