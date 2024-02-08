@@ -6,6 +6,12 @@ Hey guys, this is my collection of data structure and algorithm questions and so
 1. [Arrays](#arrays)
 - [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/description/)
 - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description)
+- [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/)
+- [2215. Find the Difference of Two Arrays](https://leetcode.com/problems/find-the-difference-of-two-arrays/description/)
+- [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/description/)
+- [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/description/)
+- [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
+- [290. Word Pattern](https://leetcode.com/problems/word-pattern/description/)
 
 2. [Strings](#strings)
 3. [Linked Lists](#linked-lists)
