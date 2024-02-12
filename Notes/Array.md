@@ -103,3 +103,31 @@ l.pop() # remove the last element from the array
 # when using uppercase in python, it is a type hint
 # e.g. List[int], List[str], List[List[int]], etc.
 ```
+
+
+# Jagged Array
+
+## Summary
+- Jagged array is an array of arrays
+- Each element of a jagged array can be an array of different sizes
+- Jagged array is a good choice when the number of elements in the array is not known in advance
+
+## Jagged Array Definition
+
+```Java
+// Java
+int[][] jaggedArray = new int[3][];
+jaggedArray[0] = new int[3];
+jaggedArray[1] = new int[4];
+jaggedArray[2] = new int[2];
+```
+
+```Python
+# Python
+jaggedArray = [[0, 1, 2], [3, 4, 5, 6], [7, 8]]
+# or append elements to the jagged array
+jaggedArray = []
+jaggedArray.append([0, 1, 2])
+jaggedArray.append([3, 4, 5, 6])
+jaggedArray.append([7, 8])
+```
