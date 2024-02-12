@@ -40,3 +40,66 @@ def pascal_triangle(n):
             pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j]
     return pascal
 ```
+
+# Dynamic Array
+
+## Summary
+- Unlike static arrays, dynamic arrays can grow in size
+- Appending a new element to a dynamic array is often constant time, but can take O(n) time in the worst case.
+- Some space is wasted in dynamic arrays to avoid frequent resizing
+
+## Dynamic Array Definition
+Abstract data type with the following operations(at a minimum):
+- Get(i): return the element at index i
+    - if i is out of bound, return an error message
+- Set(i, val): set the element at index i to val
+    - if i is out of bound, return an error message
+- PushBack(val): append val to the end
+    - if the array is full, double the size of the array, and copy the elements to the new array, free the old array, and append val to the end of the new array, update the capacity of the array by doubling the size of the array, and increase the size of the array by 1
+- Remove(i): remove the element at index i
+- Size(): return the number of elements in the array
+
+## Dynamic Array Implementation
+- arr: dynamically-allocated array
+- capacity: the maximum number of elements the array can hold
+- size: number of elements in the array
+
+## Dynamic Array in C++, Java, and Python
+- C++: std::vector
+- Java: ArrayList
+- Python: list
+
+
+```C++
+// C++
+#include <vector>
+std::vector<int> v; // create an empty dynamic array
+v.push_back(1); // append 1 to the end of the array
+v.push_back(2); // append 2 to the end of the array
+v.pop_back(); // remove the last element from the array
+```
+
+```Java
+// Java
+import java.util.ArrayList;
+ArrayList<Integer> list = new ArrayList<>(); // create an empty dynamic array, the generic type is Integer(int is not allowed)
+list.add(1); // append 1 to the end of the array
+list.add(2); // append 2 to the end of the array
+list.remove(list.size()-1); // remove the last element from the array
+list.size(); // return the number of elements in the array
+```
+
+
+```Python
+# Python
+l = [] # create an empty dynamic array
+l = list() # create an empty dynamic array
+l.append(1) # append 1 to the end of the array
+l.append(2) # append 2 to the end of the array
+l.pop() # remove the last element from the array
+# 'list' here is lowercase
+# when 'List' is used, it is a type hint
+# 'list' is a built-in type in Python
+# when using uppercase in python, it is a type hint
+# e.g. List[int], List[str], List[List[int]], etc.
+```
