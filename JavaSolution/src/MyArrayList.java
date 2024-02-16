@@ -23,9 +23,6 @@ Implement a vector (mutable array with automatic resizing):
 /**
  * MyArrayListInterface
  */
-
-import java.lang.reflect.Array;
-
 interface MyArrayListInterface<T> {
     int size();
     int capacity();
