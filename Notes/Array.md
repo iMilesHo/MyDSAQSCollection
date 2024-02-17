@@ -132,25 +132,125 @@ jaggedArray.append([3, 4, 5, 6])
 jaggedArray.append([7, 8])
 ```
 
+# Common Methods for Arrays in Python
 
-## Dynamic Array Implementation
+## Adding Elements
+- .append(element): Adds a single element to the end of the list.
+```python
+l = [1, 2, 3]
+l.append(4)
+print(l) # [1, 2, 3, 4]
+```
+- .extend(iterable): Extends the list by appending elements from the iterable.
+```python
+l = [1, 2, 3]
+l.extend([4, 5, 6])
+print(l) # [1, 2, 3, 4, 5, 6]
+```
+- .insert(index, element): Inserts an element at a specified index.
+```python
+l = [1, 2, 3]
+l.insert(1, 5)
+print(l) # [1, 5, 2, 3]
+```
+## Removing Elements
+- .remove(element): Removes the first occurrence of a value.
+```python
+l = [1, 2, 3, 4, 3]
+l.remove(3)
+print(l) # [1, 2, 4, 3]
+```
+- .pop([index]): Removes and returns an element at the given index (last element if index is not provided).
+```python
+l = [1, 2, 3, 4]
+print(l.pop()) # 4
+print(l) # [1, 2, 3]
 
-Implement a vector (mutable array with automatic resizing):
- - Practice coding using arrays and pointers, and pointer math to jump to an index instead of using indexing.
- - New raw data array with allocated memory
-- can allocate int array under the hood, just not use its features
-- start with 16, or if the starting number is greater, use power of 2 - 16, 32, 64, 128
-    - size() - number of items
-    - capacity() - number of items it can hold
-    - is_empty()
-    - at(index) - returns the item at a given index, blows up if index out of bounds
-    - push(item)
-    - insert(index, item) - inserts item at index, shifts that index's value and trailing elements to the right
-    - prepend(item) - can use insert above at index 0
-    - pop() - remove from end, return value
-    - delete(index) - delete item at index, shifting all trailing elements left
-    - remove(item) - looks for value and removes index holding it (even if in multiple places)
-    - find(item) - looks for value and returns first index with that value, -1 if not found
-    - resize(new_capacity) // private function
-- when you reach capacity, resize to double the size
-- when popping an item, if the size is 1/4 of capacity, resize to half
+print(l.pop(1)) # 2
+print(l) # [1, 3]
+```
+- .clear(): Removes all items from the list.
+```python
+l = [1, 2, 3]
+l.clear()
+print(l) # []
+```
+
+## Finding Elements
+- .index(element, [start, [end]]): Returns the index of the first occurrence of a value.
+```python
+l = [1, 2, 3, 4, 3]
+print(l.index(3)) # 2
+
+# search for 3 starting from index 3
+print(l.index(3, 3)) # 4
+
+# search for 3 between index 3 and 4
+print(l.index(3, 3, 5)) # 4
+```
+- .count(element): Returns the number of occurrences of a value.
+```python
+l = [1, 2, 3, 4, 3]
+print(l.count(3)) # 2
+```
+## Ordering and Sorting
+- .sort([key=None, reverse=False]): Sorts the items of the list in place (the arguments can be used for custom sort orders).
+```python
+l = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+l.sort() # in place sorting, non-decreasing order
+l.sort(reverse=True) # in place sorting, non-increasing order
+l.sort(key=lambda x: x%3) # in place sorting, based on the remainder of the elements when divided by 3
+```
+- .reverse(): Reverses the elements of the list in place.
+```python
+l = [1, 2, 3, 4, 5]
+l.reverse()
+print(l) # [5, 4, 3, 2, 1]
+```
+## Copying
+- .copy(): Returns a shallow copy of the list.
+```python
+l = [1, 2, 3]
+l2 = l.copy()
+l2[0] = 4
+print(l) # [1, 2, 3]
+print(l2) # [4, 2, 3]
+```
+
+## Other Commonly Used in Interviews
+- len(list): Returns the number of items in the list.
+```python
+l = [1, 2, 3, 4, 5]
+print(len(l)) # 5
+```
+
+- max(list): Returns the largest item in an iterable or the largest of two or more arguments.
+```python
+l = [1, 2, 3, 4, 5]
+print(max(l)) # 5
+```
+- min(list): Returns the smallest item in an iterable or the smallest of two or more arguments.
+```python
+l = [1, 2, 3, 4, 5]
+print(min(l)) # 1
+```
+- sum(list): Sums the items of an iterable from left to right and returns the total.
+```python
+l = [1, 2, 3, 4, 5]
+print(sum(l)) # 15
+```
+## List comprehension
+`[expression for item in iterable if condition]` for generating a new list based on existing lists, often used for filtering and transforming elements.
+```python
+l = [1, 2, 3, 4, 5]
+l2 = [x**2 for x in l if x%2==0] # if x is even, then square x
+print(l2) # [4, 16]
+```
+
+## Slicing
+`list[start:stop:step]` to make a new list out of an existing list by specifying start, stop, and step indices.
+```python
+l = [1, 2, 3, 4, 5]
+print(l[1:3]) # [2, 3]
+print(l[::2]) # [1, 3, 5]
+```
