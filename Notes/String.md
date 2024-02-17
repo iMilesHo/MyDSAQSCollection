@@ -4,9 +4,20 @@
 
 ### Basic Operations
 - Concatenation: Combining strings using the + operator.
-
+```python
+s1 = "Hello"
+s2 = "World"
+s3 = s1 + " " + s2
+print(s3)  # Output: Hello World
+```
 - Repetition: Repeating strings using the * operator.
-Indexing: Accessing characters by index using string[index].
+```python
+s = "Hello"
+s1 = s * 3
+print(s1)  # Output: HelloHelloHello
+```
+- Indexing: Accessing characters by index using string[index].
+
 - Slicing: Getting a substring using string[start:end:step].
 ### String Methods
 - .find(sub[, start[, end]]): Returns the lowest index where the substring sub is found.
