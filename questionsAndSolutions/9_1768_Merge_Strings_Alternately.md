@@ -31,7 +31,11 @@ class Solution:
         return mergedString
 ```
 
-### leetcode solution
+## Notes:
+- In python, String is immutable, so it is better to use list to store the merged string and then use join to convert the list to string. Basically, the String manipulation is not efficient in python compared to list manipulation.
+- But the String needs less space than list. So, it is a trade-off between time and space.
+
+## leetcode solution
 ```Python
 # Fastest solution
 class Solution:
@@ -49,6 +53,22 @@ class Solution:
         ans.append(word2[j:])
 
         return ''.join(ans)
+```
+
+```Python
+# Memory efficient solution 
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+
+        res = ''
+        
+        for i in range(max(len(word1),len(word2))):
+            if i < len(word1):
+                res += word1[i]
+            if i < len(word2):
+                res += word2[i]
+
+        return ''.join(res)
 ```
 
 
