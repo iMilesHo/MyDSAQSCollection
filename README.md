@@ -12,6 +12,13 @@ Hey guys, this is my collection of data structure and algorithm questions and so
 - [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/description/)
 - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
 - [290. Word Pattern](https://leetcode.com/problems/word-pattern/description/)
+- [1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately/description/)
+- [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/description/)
+- [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/description/)
+- [605. Can Place Flowers](https://leetcode.com/problems/can-place-flowers/description/)
+- [345. Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/description/)
+- [151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/description/)
+- [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/)
 
 2. [Strings](#strings)
 3. [Linked Lists](#linked-lists)
