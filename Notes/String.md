@@ -2,7 +2,39 @@
 
 ## Python
 
+### Basics Notions
+- Strings are immutable sequences of characters.
+```python
+s = "Hello World"
+s[0] = "h"  # TypeError: 'str' object does not support item assignment
+
+s = "hello world"  # This is allowed
+# The original string is not modified, a new string is created. Then the original string is garbage collected.
+
+# Notation, 
+s = "Hello World"
+print(id(s))  # Output: 4548923056
+s1 = s
+print(id(s1))  # Output: 4548923056
+s = "Hello Universe" # a new string is created, and s is pointing to the new string
+print(id(s))  # Output: 4545223288
+print(id(s1))  # Output: 4548923056
+```
+- Strings can be enclosed in single quotes ('...') or double quotes ("...").
+- Triple quotes ('''...''' or """...""") are used to span the string across multiple lines.
+- Escape sequences are used to represent characters that are difficult to type or would be inconvenient to read.
+```python
+s = "Hello\nWorld"
+print(s)  # Output: Hello
+          #         World
+```
+
 ### Basic Operations
+- Length: Getting the length of a string using len(string).
+```python
+s = "Hello World"
+print(len(s))  # Output: 11
+```
 - Concatenation: Combining strings using the + operator.
 ```python
 s1 = "Hello"
@@ -119,3 +151,15 @@ s = "Hello World"
 print(s.count("o")) # Output: 2
 print(s.count("o", 0, 5)) # Output: 1
 ``` 
+
+## String interning
+
+String Interning: Python automatically interns certain strings. This means that for some strings, Python will store only one copy of the string in memory, even if it appears multiple times in a program. When you create a new variable that has the same string value as an interned string, Python will just point the new variable to the already-existing string object. This is why you might see the same id for different variables that are assigned the same string value.
+
+Criteria for Interning: Python automatically interns string literals that look like identifiers, i.e., strings that could be variable names (containing letters, digits, and underscores, and not starting with a digit). This is because such strings are very likely to appear multiple times in programs (e.g., as variable names, attribute names, etc.), so interning them can save memory. However, not all strings are interned automatically. Python's rules for automatic interning can vary based on implementation details and the context in which the string is created.
+
+Manual Interning: You can force strings to be interned using the sys.intern() function. This can be useful if you have determined through profiling that your program would benefit from interning strings that are not automatically interned by Python.
+
+Implementation Details: Whether or not strings are interned can depend on how they are created and what they contain. For example, string literals in source code that are identical might be interned automatically by Python, but strings created at runtime through concatenation, user input, or other dynamic means might not be.
+
+Python Version and Implementation: Different versions of Python and different Python implementations (e.g., CPython, PyPy) may handle interning differently, both in terms of which strings are interned and how interning is implemented.
