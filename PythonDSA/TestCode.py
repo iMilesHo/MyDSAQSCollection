@@ -21,3 +21,6 @@ class Solution:
 s = Solution()
 list = [0,1,3]
 print(s.increasingTriplet(list))
+
+list = [1,2,3,4,5]
+print(s.increasingTriplet(list))
