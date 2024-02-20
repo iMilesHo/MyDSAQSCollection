@@ -13,6 +13,8 @@ Check the problem statement [here](https://leetcode.com/problems/reverse-words-i
 - use the prefix and postfix stratege
 - in one loop, for each step, we can confirm its prefix product
 - and we can go though the loop in a reverse direction at the same time
+- Time complexity: O(n)
+- Space complexity: O(1)
 ```
 [1,2,3,4,5,6,7]
 
@@ -54,3 +56,4 @@ class Solution:
             postfix_product *= nums[len(nums)-1-i]
         return ans         
 ```
+
