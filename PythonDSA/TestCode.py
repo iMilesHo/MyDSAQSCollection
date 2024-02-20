@@ -24,3 +24,6 @@ print(s.increasingTriplet(list))
 
 list = [1,2,3,4,5]
 print(s.increasingTriplet(list))
+
+list = [5,4,3,2,1]
+print(s.increasingTriplet(list))
