@@ -21,6 +21,10 @@ Check the problem statement [here](https://leetcode.com/problems/increasing-trip
 
 ## Python Solution
 
+### Python NOTES
+- `float('inf')` is a good way to represent the maximum value in python
+- `float('-inf')` is a good way to represent the minimum value in python
+
 ### My own solution
 ```Python
 # Naive solution
