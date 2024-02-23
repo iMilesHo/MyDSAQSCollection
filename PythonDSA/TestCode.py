@@ -1,32 +1,27 @@
 import sys
 from typing import List
 
-class Solution:
-    def increasingTriplet(self, nums: List[int]) -> bool:
-        if len(nums) < 3:
-            return False
+def lengthOfLIS_naive(nums):
+    # Function to find the length of LIS ending with the last element included
+    def findLIS(index, prev):
+        # Base case: If we've processed all elements
+        if index == len(nums):
+            return 0
         
-        first = float('inf')
-        second = float('inf')
-        for third in nums:
-            if third > second:
-                return True
-            if third <= first:
-                first = third
-            else:
-                second = third
-        return False     
+        # Case 1: Exclude the current element and move to the next element
+        taken = 0
+        if nums[index] > prev:
+            # Case 2: Include the current element if it is greater than the previous element in the LIS
+            taken = 1 + findLIS(index + 1, nums[index])
+        
+        not_taken = findLIS(index + 1, prev)
+        
+        # Return the maximum of including or not including the current element
+        return max(taken, not_taken)
+    
+    # Start the recursion with index 0 and a very small previous value
+    return findLIS(0, float('-inf'))
 
-# test code
-s = Solution()
-list = [0,1,3]
-print(s.increasingTriplet(list))
-
-list = [1,2,3,4,5]
-print(s.increasingTriplet(list))
-
-list = [5,4,3,2,1]
-print(s.increasingTriplet(list))
-
-list = [2,1,5,0,4,6]
-print(s.increasingTriplet(list))
+# Example usage
+nums = [10,9,2,5,3,7,101,18]
+print(lengthOfLIS_naive(nums))
