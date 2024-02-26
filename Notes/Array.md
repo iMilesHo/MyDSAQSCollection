@@ -178,6 +178,7 @@ print(l) # []
 
 ## Finding Elements
 - .index(element, [start, [end]]): Returns the index of the first occurrence of a value.
+    - If the value is not present, it raises a ValueError.
 ```python
 l = [1, 2, 3, 4, 3]
 print(l.index(3)) # 2
