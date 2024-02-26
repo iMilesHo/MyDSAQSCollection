@@ -132,7 +132,7 @@ jaggedArray.append([3, 4, 5, 6])
 jaggedArray.append([7, 8])
 ```
 
-# Common Methods for Arrays in Python
+# Python Array
 
 ## Adding Elements
 - .append(element): Adds a single element to the end of the list.
