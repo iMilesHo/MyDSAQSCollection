@@ -240,6 +240,13 @@ print(min(l)) # 1
 l = [1, 2, 3, 4, 5]
 print(sum(l)) # 15
 ```
+- get the shape of a 2D list
+```python
+l = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(len(l)) # 3
+print(len(l[0])) # 3
+```
+
 ## List comprehension
 `[expression for item in iterable if condition]` for generating a new list based on existing lists, often used for filtering and transforming elements.
 ```python
