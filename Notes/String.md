@@ -67,6 +67,7 @@ print(s[::2])  # Output: HloWrd
 ```python
 s = "Hello World"
 print(s.find("World"))  # Output: 6
+
 ```
 - .replace(old, new[, count]): Returns a string where all occurrences of 'old' are replaced by 'new'.
 ```python
