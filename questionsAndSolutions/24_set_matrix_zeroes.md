@@ -64,3 +64,31 @@ class Solution:
 ### Method 2: Using first row and first column as the flags
 
 ```python
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        first_row_zero = False
+        first_column_zero = False
+
+        for row_i in range(len(matrix)):
+            for column_i in range(len(matrix[0])):
+                if matrix[row_i][column_i] == 0:
+                    if row_i == 0:
+                        first_row_zero = True
+                    if column_i == 0:
+                        first_column_zero = True
+                    matrix[0][column_i] = 0
+                    matrix[row_i][0] = 0
+        for row_i in range(1, len(matrix)):
+            for column_i in range(1, len(matrix[0])):
+                if matrix[row_i][0] == 0 or matrix[0][column_i] == 0:
+                    matrix[row_i][column_i] = 0
+        if first_row_zero:
+            for column_i in range(len(matrix[0])):
+                matrix[0][column_i] = 0
+        if first_column_zero:
+            for row_i in range(len(matrix)):
+                matrix[row_i][0] = 0
+```
