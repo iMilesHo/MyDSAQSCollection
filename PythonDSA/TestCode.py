@@ -1,14 +1,33 @@
-from collections import Counter
 from typing import List
+
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = Counter(nums)
-        bucket = [[] for _ in range(len(nums) + 1)]
-        for key, value in count.items():
-            bucket[value].append(key)
-        flat_list = [item for sublist in bucket for item in sublist]
-        return flat_list[::-1][:k] # [::-1] reverse the list
-    
+    def is_the_same_anagrams(self, ans, current):
+        list_current = list(current)
+        list_current.sort()
+        is_grouped = False
+        for i in ans:
+            if len(i[0]) != len(list_current):
+                continue
+            temp = list(i[0])
+            temp.sort()
+            is_the_same_anagrams = True
+            for cur_i, temp_i in zip(list_current, temp):
+                if cur_i != temp_i:
+                    is_the_same_anagrams = False
+                    break
+            if is_the_same_anagrams:
+                i.append(current)
+                is_grouped = True
+                break
+        if not is_grouped:
+            ans.append([current])
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans = []
+        for i in strs:
+            self.is_the_same_anagrams(ans, i)
+        return ans
+
 # test code
-s = Solution()
-print(s.topKFrequent([1,1,1,2,2,3], 2))
+            
+sol = Solution()
+print(sol.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
