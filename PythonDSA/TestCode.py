@@ -1,47 +1,44 @@
 from typing import List
 
+"""
+constraints:
+- length of the array: [0, 10^5]
+- value: [-10^9, 10^9]
+
+idea:
+- bucket sort
+"""
+
 class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
-        row_sets_list = [set() for _ in range(9)]
-        col_sets_list = [set() for _ in range(9)]
-        sub3t3_sets_list = [set() for _ in range(9)]
-        for i in range(9):
-            for j in range(9):
-                temp = board[i][j]
-                if temp == ".":
-                    continue
-                if temp not in row_sets_list[i]:
-                    row_sets_list[i].add(temp)
-                else:
-                    return False
-                if temp not in col_sets_list[j]:
-                    col_sets_list[j].add(temp)
-                else:
-                    return False
-                
-                sub_3t3_index = int(i/3)*3 + int(j/3)
-                if temp not in sub3t3_sets_list[sub_3t3_index]:
-                    sub3t3_sets_list[sub_3t3_index].add(temp)
-                else:
-                    return False
-        return True
-
-                
-
-
-# test code
+    def longestConsecutive(self, nums: List[int]) -> int:
+        nums = set(nums)
+        value_dict = {}
+        for i in nums:
+            value_dict[i] = False
+        longest_ans = 0
+        for i in nums:
+            if value_dict[i]:
+                continue
             
-# sol = Solution()
-# board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
-# print(sol.isValidSudoku(board)) # True
+            temp_length = 1
+            j = i + 1
+            while value_dict.get(j) is not None:
+                temp_length += 1
+                value_dict[j] = True
+                j += 1
+                
+            
+            k = i - 1
+            while value_dict.get(k) is not None:
+                temp_length += 1
+                value_dict[k] = True
+                k -= 1
 
-test_repeat_initialize_1 = [set()] * 9
-test_repeat_initialize_2 = [set() for _ in range(9)]
+            value_dict[i] = True
+            if temp_length > longest_ans:
+                longest_ans = temp_length
+        return longest_ans
 
-for i in range(9):
-    test_repeat_initialize_1[i].add(i)
-    test_repeat_initialize_2[i].add(i)
-print(test_repeat_initialize_1) 
-print(test_repeat_initialize_2) 
-# [{0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}, {0, 1, 2, 3, 4, 5, 6, 7, 8}]
-# [{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}]
+
+sol = Solution() 
+print(sol.longestConsecutive([9,1,4,7,3,-1,0,5,8,-1,6])) # 4
