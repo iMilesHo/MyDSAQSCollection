@@ -1,7 +1,9 @@
 # LinkedList
 
 ## Definition
-Linked list is a linear data structure where elements are stored in nodes. Each node has a value and a pointer to the next node in the sequence. The first node is called the head and the last node is called the tail. The tail node points to null.
+- a linear data structure
+- stored in nodes: a value and a pointer to the next node
+- head and tail nodes
 
 ## Advantages
 - Dynamic size

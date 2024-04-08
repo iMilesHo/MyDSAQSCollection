@@ -1,11 +1,9 @@
 # python collections
 
 ## collections module
-
 The `collections` module provides alternatives to built-in container data types such as `dict`, `list`, `set`, and `tuple`.
 
 ### Counter
-
 The `Counter` class is a subclass of `dict` that counts hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts as dictionary values.
 
 ```Python
@@ -21,5 +19,6 @@ print(c['a']) # Output: 3
 c = Counter(['eggs', 'ham'])
 print(c) # Output: Counter({'eggs': 1, 'ham': 1})
 ```
+
 
 

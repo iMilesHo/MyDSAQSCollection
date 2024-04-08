@@ -42,7 +42,6 @@ def pascal_triangle(n):
 ```
 
 # Dynamic Array
-
 ## Summary
 - Unlike static arrays, dynamic arrays can grow in size
 - Appending a new element to a dynamic array is often constant time, but can take O(n) time in the worst case.
