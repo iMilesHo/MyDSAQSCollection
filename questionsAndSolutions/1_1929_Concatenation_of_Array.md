@@ -4,7 +4,6 @@
 Check the problem statement [here](https://leetcode.com/problems/concatenation-of-array/description/).
 
 ### My Solution
-
 ```java
 // Java
 class Solution {
