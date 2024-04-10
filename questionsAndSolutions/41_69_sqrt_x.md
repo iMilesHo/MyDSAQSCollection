@@ -41,9 +41,6 @@ class Solution:
         else:
             return mid
 ```
-                
-        
-
 
 ## Solution 2
 ```python
