@@ -103,3 +103,5 @@ class Solution:
                 second = third
         return False
 ```
+
+````python
