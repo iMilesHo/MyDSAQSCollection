@@ -31,3 +31,20 @@ class Solution:
                 mid = (left + right) // 2
         return left
 ```
+
+## solution 2:
+```python
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        low, high = ceil(sum(piles)/h), max(piles)
+        while low <= high:
+            mid = (high-low)//2 + low
+            hours = 0
+            for p in piles:
+                hours += ceil(p / mid)
+            if hours <= h:
+                high = mid - 1
+            elif hours > h:
+                low = mid + 1
+        return low
+```
