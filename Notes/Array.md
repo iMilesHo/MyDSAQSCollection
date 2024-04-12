@@ -158,6 +158,9 @@ print(l) # [1, 5, 2, 3]
 l = [1, 2, 3, 4, 3]
 l.remove(3)
 print(l) # [1, 2, 4, 3]
+
+# if the element is not in the list, it raises a ValueError
+l.remove(5) # ValueError: list.remove(x): x not in list
 ```
 - .pop([index]): Removes and returns an element at the given index (last element if index is not provided).
 ```python
@@ -187,6 +190,9 @@ print(l.index(3, 3)) # 4
 
 # search for 3 between index 3 and 4
 print(l.index(3, 3, 5)) # 4
+
+# if the element is not in the list, it raises a ValueError
+l.index(5) # ValueError: 5 is not in list
 ```
 - .count(element): Returns the number of occurrences of a value.
 ```python
@@ -260,4 +266,11 @@ print(l2) # [4, 16]
 l = [1, 2, 3, 4, 5]
 print(l[1:3]) # [2, 3]
 print(l[::2]) # [1, 3, 5]
+```
+
+## How to check if a element is in a list
+```python
+l = [1, 2, 3, 4, 5]
+print(3 in l) # True
+print(6 in l) # False
 ```
