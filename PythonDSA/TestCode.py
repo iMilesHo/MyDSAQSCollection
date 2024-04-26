@@ -1,44 +1,75 @@
 from typing import List
+from traitlets import Int
 
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+class Node:
+    def __init__(self, value, next = None):
+        self.value = value
+        self.next = next
 
-def delete_middle_node(head: ListNode) -> ListNode:
-    if not head or not head.next:
-        return None
-    slow = fast = head
-    prev = None
-    while fast and fast.next:
-        prev = slow
-        slow = slow.next
-        fast = fast.next.next
-    prev.next = slow.next
-    return head
+def reverseInGroupsOfK(head, k):
+    if (not head and not head.next) or k == 1:
+        return head
+    
+    # get the length of the linked list
+    length = 0
+    temp = head
+    while temp:
+        length += 1
+        temp = temp.next
 
-# test 
-def build_linked_list(arr: List[int]) -> ListNode:
-    head = ListNode(arr[0])
-    current = head
-    for i in range(1, len(arr)):
-        current.next = ListNode(arr[i])
-        current = current.next
-    return head
+    pre = None
+    mid = head
 
-def print_linked_list(head: ListNode) -> None:
-    current = head
-    while current:
-        print(current.val, end=' ')
-        current = current.next
+    newHead = None
+    group_trail = head
+    next_group_trail = None
+
+    count = 0
+
+    last_group_count = length//k * k
+
+    while mid and count < last_group_count:
+        after = mid.next
+        mid.next = pre
+        pre = mid
+        mid = after
+
+        count += 1
+        if count == k:
+            newHead = pre
+        if count % k == 0:
+            if group_trail == head:
+                head = pre
+                next_group_trail = mid
+            else:
+                group_trail.next = pre
+                group_trail = next_group_trail
+                group_trail.next = None
+                pre = None
+                next_group_trail = mid
+
+    # if the last group is less than k
+    group_trail.next = mid
+        
+    return newHead
+
+def printList(head):
+    while head:
+        print(head.value, end = " ")
+        head = head.next
     print()
 
-head = build_linked_list([1, 2, 3, 4, 5])
-print_linked_list(head)
-head = delete_middle_node(head)
-print_linked_list(head)
+def createList(arr: List[int]) -> Node:
+    head = Node(arr[0])
+    temp = head
+    for i in range(1, len(arr)):
+        temp.next = Node(arr[i])
+        temp = temp.next
+    return head
 
-head = build_linked_list([1, 2, 3, 4, 5, 6])
-print_linked_list(head)
-head = delete_middle_node(head)
-print_linked_list(head)
+if __name__ == "__main__":
+    arr = [1, 2, 3, 4, 5]
+    head = createList(arr)
+    printList(head)
+    head = reverseInGroupsOfK(head, 1)
+    printList(head)
