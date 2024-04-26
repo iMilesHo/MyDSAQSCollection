@@ -31,7 +31,6 @@ class Solution:
 
         last_group_count = length//k * k
 
-
         while mid and count < last_group_count:
             after = mid.next
             mid.next = pre
@@ -56,4 +55,44 @@ class Solution:
         group_trail.next = mid
 
         return newHead
+```
+
+## Recursive solution
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        def reverseList(head, length, k):
+            if length < k:
+                return head
+            pre = None
+            mid = head
+            after = None
+            count = 0
+            while mid and count < k:
+                after = mid.next
+                mid.next = pre
+                pre = mid
+                mid = after
+                count += 1
+            if mid:
+                head.next = reverseList(mid, length - k, k)
+            return pre
+
+        if (not head and not head.next) or k == 1:
+            return head
+
+        # get the length of the linked list
+        length = 0
+        temp = head
+        while temp:
+            length += 1
+            temp = temp.next
+
+        return reverseList(head, length, k)
 ```

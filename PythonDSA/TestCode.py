@@ -1,75 +1,46 @@
 from typing import List
 from traitlets import Int
 
-class Node:
-    def __init__(self, value, next = None):
-        self.value = value
-        self.next = next
 
-def reverseInGroupsOfK(head, k):
-    if (not head and not head.next) or k == 1:
-        return head
-    
-    # get the length of the linked list
-    length = 0
-    temp = head
-    while temp:
-        length += 1
-        temp = temp.next
-
-    pre = None
-    mid = head
-
-    newHead = None
-    group_trail = head
-    next_group_trail = None
-
-    count = 0
-
-    last_group_count = length//k * k
-
-    while mid and count < last_group_count:
-        after = mid.next
-        mid.next = pre
-        pre = mid
-        mid = after
-
-        count += 1
-        if count == k:
-            newHead = pre
-        if count % k == 0:
-            if group_trail == head:
-                head = pre
-                next_group_trail = mid
-            else:
-                group_trail.next = pre
-                group_trail = next_group_trail
-                group_trail.next = None
-                pre = None
-                next_group_trail = mid
-
-    # if the last group is less than k
-    group_trail.next = mid
+"""
+1 2 3 4
+5 1 2 3
+6 5 1 2
+7 6 5 1
+"""
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        if not matrix or not matrix[0]:
+            return False
         
-    return newHead
+        width, height = len(matrix[0]), len(matrix)
+        if width == 1 or height == 1:
+            return True
 
-def printList(head):
-    while head:
-        print(head.value, end = " ")
-        head = head.next
-    print()
+        # horizontal (first row)
+        for i in range(width):
+            row, col = 0, i
+            while row < height and col < width:
+                if matrix[0][i] != matrix[row][col]:
+                    return False
+                row += 1
+                col += 1
 
-def createList(arr: List[int]) -> Node:
-    head = Node(arr[0])
-    temp = head
-    for i in range(1, len(arr)):
-        temp.next = Node(arr[i])
-        temp = temp.next
-    return head
+        # vertical (first collumn)
+        for j in range(1, height):
+            row, col = j, 0
+            while row < height and col < width:
+                if matrix[j][0] != matrix[row][col]:
+                    return False
+                row += 1
+                col += 1
+        return True
 
-if __name__ == "__main__":
-    arr = [1, 2, 3, 4, 5]
-    head = createList(arr)
-    printList(head)
-    head = reverseInGroupsOfK(head, 1)
-    printList(head)
+
+# Test
+solution = Solution()
+matrix = [[1,2,3,4],[5,1,2,3],[6,5,1,2],[7,6,5,1]]
+print(solution.isToeplitzMatrix(matrix))  # True
+
+matrix = [[11,74,0,93],[40,11,74,7]]
+print(solution.isToeplitzMatrix(matrix))  # False
