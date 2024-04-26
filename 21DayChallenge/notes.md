@@ -126,50 +126,57 @@ def reverseLinkedList(head):
     return pre
 ```
 
-So reverse the linked list in group should be like:
+So reverse the linked list in group should be like (the last group keep the original order):
 
 ```python
-def reverseInGroupsOfK(head, k):
-    if not head and not head.next:
-        return head
+# 25 reverse nodes in k-group
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if (not head and not head.next) or k == 1:
+            return head
 
-    pre = None
-    mid = head
+        # get the length of the linked list
+        length = 0
+        temp = head
+        while temp:
+            length += 1
+            temp = temp.next
 
-    newHead = None
-    group_trail = head
+        pre = None
+        mid = head
 
-    count = 0
+        newHead = None
+        group_trail = head
+        next_group_trail = None
 
-    while mid:
-        after = mid.next
-        mid.next = pre
-        pre = mid
-        mid = after
+        count = 0
 
-        count += 1
+        last_group_count = length//k * k
 
-        if count == k:
-            newHead = pre
-        if count % k = 0 or not mid:
-            pre = group_trail
-            group_trail = mid
+        while mid and count < last_group_count:
+            after = mid.next
+            mid.next = pre
+            pre = mid
+            mid = after
 
-    return newHead
+            count += 1
+            if count == k:
+                newHead = pre
+            if count % k == 0:
+                if group_trail == head:
+                    head = pre
+                    next_group_trail = mid
+                else:
+                    group_trail.next = pre
+                    group_trail = next_group_trail
+                    group_trail.next = None
+                    pre = None
+                    next_group_trail = mid
 
-def reverseLinkedList(head, trail):
-    if not head and not head.next:
-        return head
+        # if the last group is less than k
+        group_trail.next = mid
 
-    pre = None
-    mid = head
-    after = head.next
-
-    while mid == trail.next:
-        after = mid.next
-        mid.next = pre
-        pre = mid
-        mid = after
-
-    return pre, head
+        return newHead
 ```
+
+# Day 4
