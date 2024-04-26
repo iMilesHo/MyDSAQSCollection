@@ -180,7 +180,6 @@ class Solution:
 ```
 
 # Day 4
-<<<<<<< HEAD
 
 A Toeplitz Matrix is one where the values on every diagonal are the same: Given a 2d matrix (multidimensional array), return true if the input is a Toeplitz matrix and false otherwise.
 
@@ -202,5 +201,3 @@ def isToeplitz(matrix):
 
 
 ```
-=======
->>>>>>> 7286e4535a1495b8a96308ac190efbf77a8a2f08
