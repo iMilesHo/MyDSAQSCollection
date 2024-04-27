@@ -1,20 +1,24 @@
 from typing import List
 from traitlets import Int
 
-def findInMonotonic(matrix: List[List[Int]], k: Int) -> bool:
-    rows, cols = len(matrix), len(matrix[0])
-    row, col = rows - 1, 0
+def isPalindromeAnagram(word: str) -> bool:
+    left, right = 0, len(word) - 1
+    word = word.lower()
 
-    while row >= 0 and col < cols:
-        if matrix[row][col] == k:
-            return True
-        elif matrix[row][col] > k:
-            row -= 1
+    while left < right:
+        if word[left].isalnum() and word[right].isalnum():
+            if word[left] != word[right]:
+                return False
+            else:
+                left += 1
+                right -= 1
         else:
-            col += 1
-    return False
+            if not word[left].isalnum():
+                left += 1
+            if not word[right].isalnum():
+                right -= 1
 
-matrix = [[1, 2, 3], 
-          [4, 6, 7], 
-          [5, 8, 9]]
-print(findInMonotonic(matrix, 6))  # True
+    return True
+
+s = "A man, a plan, a canal: Panama"
+print(isPalindromeAnagram(s))
