@@ -197,7 +197,84 @@ function isToeplitz(m) {
 ```
 
 ```python
-def isToeplitz(matrix):
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        rows, columns = len(matrix), len(matrix[0])
 
+        for r in range(rows):
+            for c in range(columns):
+                if r!=0 and c!=0 and matrix[r][c]!=matrix[r-1][c-1]:
+                    return False
+        return True
+```
+
+# Day 5
+
+Given a rectangular 2D array of integers, return true if all rows and all columns are monotonically increasing. This means that every successive value along all rows and columns must be AT LEAST as large as what came before.
+
+Example:
+
+[[0, 0, 0, 1],
+ [1, 1, 1, 2],
+ [2, 3, 4, 5]]
+
+Returns true but this next one returns false.
+
+[[0, 0, 0, 1],
+ [1, 1, 3, 2],
+ [2, 3, 4, 5]]
+
+```js
+function isMatrixMonotonic(matrix) {
+  /* your code here */
+}
+```
+
+```python
+def isMatrixMonotonic(matrix: List[List[Int]]) -> bool:
+    rows = len(matrix)
+    cols = len(matrix[0])
+    for i in range(rows):
+        for j in range(cols):
+            if i > 0 and j > 0 and matrix[i][j] < matrix[i-1][j] and matrix[i][j] < matrix[i][j-1]:
+                return False
+    return True
+```
+
+# Day 6
+
+Given a matrix that is monotonically increasing along all rows and columns, as well as a value, k, return true if the value exists in the matrix and false otherwise.
+
+Example:
+
+[[0, 0, 0, 1],
+ [1, 1, 1, 2],
+ [2, 3, 4, 5]]
+
+```python
+def findInMonotonic(matrix: List[List[Int]], k: Int) -> bool:
+    rows, cols = len(matrix), len(matrix[0])
+    row, col = rows - 1, 0
+
+    while row >= 0 and col < cols:
+        if matrix[row][col] == k:
+            return True
+        elif matrix[row][col] > k:
+            row -= 1
+        else:
+            col += 1
+    return False
+```
+
+# Day 7
+
+Given a string, return true if the letters can be re-arranged to make a palindrome using every letter. Otherwise, return false.
+
+function isPalindromeAnagram(word) {
+/_ your code here _/
+}
+
+```python
+def isPalindromeAnagram(word: str) -> bool:
 
 ```
