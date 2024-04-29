@@ -276,22 +276,105 @@ function isPalindromeAnagram(word) {
 
 ```python
 def isPalindromeAnagram(word: str) -> bool:
-    left, right = 0, len(word) - 1
-    word = word.lower()
+    counter = Counter(word)
+    odd_count = 0
+    for count in counter.values():
+        if count % 2 != 0:
+            odd_count += 1
+    return odd_count <= 1
+```
 
-    while left < right:
-        if word[left].isalnum() and word[right].isalnum():
-            if word[left] != word[right]:
-                return False
-            else:
-                left += 1
-                right -= 1
+# Day 8
+
+Given a binary tree, convert this to a doubly linked list in the order of the in-order traversal. This operation should be done in place, not creating any new data structure. You must re-use the node's left pointer as the pointer to the previous node in the list and the right pointer should be the next node in the list.
+
+At the end, return a pointer the first node in the list.
+
+```js
+
+/\*
+
+- You may assume the node class is:
+- class Node {
+- constructor(value, left = null, right = null) {
+-     this.value = value;
+-     this.left = left;
+-     this.right = right;
+- }
+- }
+  _/
+  function tree2list(root) {
+  /_ your code here \*/
+  }
+
+```
+
+```python
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+def convert_to_doubly_linked_list(root: TreeNode) -> TreeNode:
+    if not root:
+        return None
+    first, prev = None, None
+
+    def inorder_traversal(curr: TreeNode):
+        nonlocal first, prev
+        if not curr:
+            return
+        inorder_traversal(curr.left)
+
+        if prev:
+            prev.right = curr
+            curr.left = prev
         else:
-            if not word[left].isalnum():
-                left += 1
-            if not word[right].isalnum():
-                right -= 1
+            first = curr
 
-    return True
+        prev = curr
+
+        inorder_traversal(curr.right)
+    inorder_traversal(root)
+    return first
+
+# Helper function to display the doubly linked list
+def print_doubly_linked_list(node):
+    while node:
+        print(f"{node.value}", end=" <-> " if node.right else "")
+        node = node.right
+    print()
+
+# Example usage
+if __name__ == "__main__":
+    # Creating a binary tree:
+    #       4
+    #      / \
+    #     2   5
+    #    / \
+    #   1   3
+    root = TreeNode(4)
+    root.left = TreeNode(2)
+    root.right = TreeNode(5)
+    root.left.left = TreeNode(1)
+    root.left.right = TreeNode(3)
+
+    # Convert to doubly linked list and print
+    head = convert_to_doubly_linked_list(root)
+    print_doubly_linked_list(head)
+```
+
+# Day 9
+
+Implement binary search on an array. Return the index of the value if found and -1 otherwise.
+
+```js
+function binarySearch(data, k) {
+  /* your code here */
+}
+```
+
+```python
 
 ```

@@ -1,7 +1,8 @@
 # Tree
 
-A tree data structure is a hierachical structure that is used to represent and organize data in a way that is easy to navigate and search. 
+A tree data structure is a hierachical structure that is used to represent and organize data in a way that is easy to navigate and search.
 Applications of trees include:
+
 - file systems (hierarchical file systems)
 - HTML DOM (Document Object Model)
 - data compression algorithms (Huffman coding)
@@ -9,16 +10,16 @@ Applications of trees include:
 - Data indexing (B-trees, AVL trees)
 
 Advantages of trees:
+
 - Efficient data searching
 - provides a hierarchical structure that is easy to navigate
 - easy to traverse and manipulate using recursion algorithms
 
-
 Disadvantages of trees:
+
 - manipulation of trees can be complex
 - more memory is required to store the tree structure
 - trees can be slow to search if the tree is not balanced
-
 
 ## Classic Problems
 
@@ -41,3 +42,9 @@ class Solution:
             res.append(root.val)
             self.inorder(root.right, res)
 ```
+
+## Tree Traversal
+
+1. Inorder Traversal: left, root, right
+2. Preorder Traversal: root, left, right
+3. Postorder Traversal: left, right, root

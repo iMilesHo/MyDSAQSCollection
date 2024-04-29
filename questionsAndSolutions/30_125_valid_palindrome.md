@@ -3,15 +3,18 @@
 ## file name: 30_125_valid_palindrome.md
 
 ## constraits:
+
 - length: [1, 2*10^5]
 
 ## ideas:
+
 - we just use two pointors to go through the string forward and backword
- - for every character we convert it to lowercase and if we meet a non-alphanumic characters we just skip it
+- for every character we convert it to lowercase and if we meet a non-alphanumic characters we just skip it
 
 ## Python Solution
 
 ### My Solution
+
 ```python
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -37,17 +40,39 @@ class Solution:
         return True
 ```
 
+```python
+def isPalindromeAnagram(word: str) -> bool:
+    left, right = 0, len(word) - 1
+    word = word.lower()
+
+    while left < right:
+        if word[left].isalnum() and word[right].isalnum():
+            if word[left] != word[right]:
+                return False
+            else:
+                left += 1
+                right -= 1
+        else:
+            if not word[left].isalnum():
+                left += 1
+            if not word[right].isalnum():
+                right -= 1
+
+    return True
+```
+
 ### Leetcode Solution
+
 ```python
 class Solution:
-    def isPalindrome(self, s: str) -> bool:            
+    def isPalindrome(self, s: str) -> bool:
         left, right = 0, len(s)-1
         s = s.lower()
 
         while left<right:
             while left<right and not s[left].isalnum():
                 left += 1
-            
+
             while left<right and not s[right].isalnum():
                 right -= 1
 
@@ -66,7 +91,5 @@ class Solution:
         for letter in s:
             if letter.isalnum():
                 ans+= letter
-        return ans == ans[::-1]             
+        return ans == ans[::-1]
 ```
-
-

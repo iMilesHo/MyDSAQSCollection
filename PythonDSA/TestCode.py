@@ -1,24 +1,20 @@
 from typing import List
 from traitlets import Int
 
-def isPalindromeAnagram(word: str) -> bool:
-    left, right = 0, len(word) - 1
-    word = word.lower()
-
-    while left < right:
-        if word[left].isalnum() and word[right].isalnum():
-            if word[left] != word[right]:
-                return False
-            else:
-                left += 1
-                right -= 1
+def binarySearch(arr: List[int], k: int) -> int:
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == k:
+            return mid
+        elif arr[mid] < k:
+            left = mid + 1
         else:
-            if not word[left].isalnum():
-                left += 1
-            if not word[right].isalnum():
-                right -= 1
+            right = mid - 1
+    return -1
 
-    return True
-
-s = "A man, a plan, a canal: Panama"
-print(isPalindromeAnagram(s))
+# Test
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+k = 1
+print(binarySearch(arr, k))
