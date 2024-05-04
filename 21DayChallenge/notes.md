@@ -394,7 +394,7 @@ def binarySearch(arr: List[int], k: int) -> int:
 
 Implement a merge sort algorithm for an array.
 
-```
+```python
 def mergeSort(arr: List[int]) -> List[int]:
     length_arr = len(arr)
     if length_arr <= 1:
@@ -411,4 +411,26 @@ def mergeSort(arr: List[int]) -> List[int]:
             arr[i] = right[right_i]
             right_i += 1
     return arr
+```
+
+# Day 11
+
+Given a binary tree, find the height, that is the length of the path from the root to the deepest leaf node.
+/\*
+
+- You may assume the node class is:
+- class TreeNode {
+- constructor(value, left = null, right = null) {
+-     this.value = value;
+-     this.left = left;
+-     this.right = right;
+- }
+- }
+  _/
+  function treeHeight(root) {
+  /_ your code here \*/
+  }
+
+```python
+
 ```

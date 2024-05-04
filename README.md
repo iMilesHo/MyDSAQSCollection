@@ -1,9 +1,20 @@
 ## My Data Structure and Algorithm Questions and Solutions
+
 Hey guys, this is my collection of data structure and algorithm questions and solutions. I will be adding more questions and solutions as I solve them. I hope this collection helps you in your preparation for interviews and competitive programming.
+
+## Online Resources
+
+- https://coderpad.io/
+- https://leetcode.com/
+- https://www.hackerrank.com/
+- https://www.interviewbit.com/
+- https://www.geeksforgeeks.org/
+- https://www.programiz.com/
 
 ## Table of Contents
 
 1. [Arrays](#arrays)
+
 - [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/description/)
 - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description)
 - [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/)
@@ -34,4 +45,4 @@ Hey guys, this is my collection of data structure and algorithm questions and so
 13. [Backtracking](#backtracking)
 14. [Divide and Conquer](#divide-and-conquer)
 15. [Sorting and Searching](#sorting-and-searching)
-16. [Miscellaneous](#miscellaneous) 
+16. [Miscellaneous](#miscellaneous)
