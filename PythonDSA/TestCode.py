@@ -1,27 +1,30 @@
-from typing import List
+from typing import List, Optional
 from traitlets import Int
 
-class LinkListNode:
-  def __init__(self, val, left=None, right=None):
-    self.val = val
-    self.left = left
-    self.right = right
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
 
-# BFS
-def treeHeight(root: LinkListNode):
-  if not root:
-    return None
-  deepest_height = 0
-  temp_height = 0
-  stack_node = [root]
-  while len(stack_node) > 0:
-    curr = stack_node.pop()
-    temp_height += 1
-    if curr.left:
-      stack_node.append(curr.left)
-    if curr.right:
-      stack_node.append(curr.right)
-    
-    
-      
-  
+def convert_to_doubly_linked_list(root: TreeNode) -> TreeNode:
+    if not root:
+        return None
+    head, prev = None, None
+
+    def inorder_traversal(curr: TreeNode):
+        if not curr:
+            return curr
+        inorder_traversal(curr.left)
+
+        if not prev:
+            head = curr
+        else:
+            prev.right = curr
+            curr.left = prev
+        
+        prev = curr
+        inorder_traversal(curr.right)
+    inorder_traversal(root)
+    return head
+

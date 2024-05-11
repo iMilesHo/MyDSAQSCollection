@@ -179,6 +179,32 @@ class Solution:
         return newHead
 ```
 
+```python
+# recursive solution
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # Check if there are at least k nodes left to reverse
+        count = 0
+        node = head
+        while count < k and node:
+            node = node.next
+            count += 1
+
+        if count == k:
+            # Reverse the first k nodes
+            prev, curr = None, head
+            for _ in range(k):
+                next_temp = curr.next
+                curr.next = prev
+                prev = curr
+                curr = next_temp
+
+            # Recursively reverse the remaining list and connect it to the current head
+            head.next = self.reverseKGroup(curr, k)
+            return prev
+        return head
+```
+
 # Day 4
 
 A Toeplitz Matrix is one where the values on every diagonal are the same: Given a 2d matrix (multidimensional array), return true if the input is a Toeplitz matrix and false otherwise.
@@ -322,7 +348,7 @@ def convert_to_doubly_linked_list(root: TreeNode) -> TreeNode:
     first, prev = None, None
 
     def inorder_traversal(curr: TreeNode):
-        nonlocal first, prev
+        nonlocal first, prev # use nonlocal to modify the variable in the outer scope otherwise it will be treated as a local variable
         if not curr:
             return
         inorder_traversal(curr.left)
