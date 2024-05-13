@@ -78,6 +78,7 @@ print(phone_book.search("Alice"))  # Output: Not found
 ```
 
 # Hash Table
+
 - key-value pair data structure
 - used for efficient search, insert, and delete operations
 - typically offers O(1) time complexity for these operations
@@ -85,34 +86,41 @@ print(phone_book.search("Alice"))  # Output: Not found
 - different key will have different unique bucket index but collision can occur via hash function
 
 ## Key features of hash table
+
 - Hash function: converts the key into an index
 - Bucket: a slot to store multiple entries in the case of collision
-- Collision handling: 
-    - chaining: store multiple entries in the same bucket
-    - open addressing: find another empty bucket to store the entry
+- Collision handling:
+  - chaining: store multiple entries in the same bucket
+  - open addressing: find another empty bucket to store the entry
 
 ## Basic operations with Python dictionary
+
 - please refer to the Dictionary.md file
 
-
 ## handling collision
+
 - chaining: store multiple entries in the same bucket
 - open addressing: find another empty bucket to store the entry
-    - linear probing: check the next bucket
-    - quadratic probing: check the next bucket with a quadratic function
-    - double hashing: check the next bucket with a second hash function
+  - linear probing: check the next bucket
+  - quadratic probing: check the next bucket with a quadratic function
+  - double hashing: check the next bucket with a second hash function
 
 ## Dictionary order
+
 - Python 3.7+: insertion order is preserved
 
 ## Memory usage
+
 - python dictionary is designed for speed
 
 ## Set
+
 - set in Python is implemented using a hash table
 
 ## Common Pitfalls
+
 - mutable objects should not be used as keys
+
 ```python
 # Example
 my_dict = {}
@@ -125,4 +133,5 @@ my_dict[tuple(my_list)] = "value"
 # or
 my_dict[frozenset(my_list)] = "value"
 ```
+
 - use .get() method to avoid KeyError

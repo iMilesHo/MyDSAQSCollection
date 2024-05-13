@@ -465,20 +465,215 @@ def longest_palindromic_substring_expand(s):
     return longest
 ```
 
-- Longest Common Subsequence
-
-```python
-
-```
-
-- Edit Distance
-
-```python
-
-```
-
 - Substring Search
 
 ```python
+# Brute force
+def substring_search_brute_force(s, pattern):
+    n, m = len(s), len(pattern)
+    if m == 0 or m > n:
+        return 0
+    positions = []
+    for i in range(n - m + 1):
+        if s[i:i+m] == pattern:
+            positions.append(i)
+    return positions
 
+# built-in find
+def substring_search_builtin(s, pattern):
+    positions = []
+    start = 0
+    while True:
+        start = s.find(pattern, start)
+        if start == -1:
+            break
+        positions.append(start)
+        start += 1
+    return positions
+
+# KMP algorithm
+def substring_search_kmp(s, pattern):
+    def build_lps(pattern):
+        m = len(pattern)
+        lps = [0] * m
+        length = 0
+        i = 1
+        while i < m:
+            if pattern[i] == pattern[length]:
+                length += 1
+                lps[i] = length
+                i += 1
+            else:
+                if length != 0:
+                    length = lps[length - 1]
+                else:
+                    lps[i] = 0
+                    i += 1
+        return lps
+
+    n, m = len(s), len(pattern)
+    if m == 0 or m > n:
+        return 0
+    lps = build_lps(pattern)
+    positions = []
+    i, j = 0, 0
+    while i < n:
+        if s[i] == pattern[j]:
+            i += 1
+            j += 1
+        if j == m:
+            positions.append(i - j)
+            j = lps[j - 1]
+        elif i < n and s[i] != pattern[j]:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+    return positions
+```
+
+- Longest Common Subsequence
+  - The longest common subsequence (LCS) problem is the problem of finding the longest subsequence that two sequences have in common.
+  - A subsequence is a sequence that appears in the same relative order but not necessarily contiguous.
+  - For example, given the strings "abcde" and "ace", the LCS is "ace" with a length of 3.
+
+```python
+# brute force
+# Time complexity: O(2^(m+n)), where m and n are the lengths of the two strings.
+def longest_common_subsequence_brute_force(s1, s2):
+    def lcs(i, j):
+        if i == len(s1) or j == len(s2):
+            return 0 # because we reached the end of one of the strings which i and j are exceeding the length of the strings
+        if s1[i] == s2[j]:
+            return 1 + lcs(i + 1, j + 1)
+        return max(lcs(i + 1, j), lcs(i, j + 1))
+
+    return lcs(0, 0)
+# dynamic programming
+def longest_common_subsequence_dp(s1, s2):
+    m, n = len(s1), len(s2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = 1 + dp[i - 1][j - 1]
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    return dp[m][n]
+```
+
+- Edit Distance
+  - The edit distance between two strings is the minimum number of operations required to transform one string into the other.
+  - For example, the edit distance between "kitten" and "sitting" is 3.
+
+```python
+def edit_distance(s1, s2):
+    # Create a table to store results of subproblems
+    dp = [[0 for x in range(len(s2) + 1)] for x in range(len(s1) + 1)]
+
+    # Fill dp[][] in bottom up manner
+    for i in range(len(s1) + 1):
+        for j in range(len(s2) + 1):
+            # If first string is empty, the only option is to insert all characters of the second string
+            if i == 0:
+                dp[i][j] = j  # Min. operations = j
+
+            # If second string is empty, the only option is to remove all characters of the first string
+            elif j == 0:
+                dp[i][j] = i  # Min. operations = i
+
+            # If last characters are the same, ignore the last char and recur for remaining string
+            elif s1[i-1] == s2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+
+            # If the last character is different, consider all possibilities and find the minimum
+            else:
+                dp[i][j] = 1 + min(dp[i][j-1],        # Insert
+                                   dp[i-1][j],        # Remove
+                                   dp[i-1][j-1])      # Replace
+
+    return dp[len(s1)][len(s2)]
+```
+
+- String Compression
+  - For example, the string "aabcccccaaa" would become "a2b1c5a3".
+
+```python
+def compress_string(s):
+    compressed = []
+    count = 0
+    for i in range(len(s)):
+        count += 1
+        if i + 1 == len(s) or s[i] != s[i + 1]:
+            compressed.append(s[i] + str(count))
+            count = 0
+    return "".join(compressed)
+```
+
+- Group Anagrams
+  - For example, given the array ["eat", "tea", "tan", "ate", "nat", "bat"], the program should return: [["ate", "eat", "tea"], ["nat", "tan"], ["bat"]].
+
+```python
+def group_anagrams(strs):
+    anagrams = {}
+
+    for s in strs:
+        key = tuple(sorted(s)) # the result of sorted is a list, so we need to convert it to a tuple for hashing, because lists are not hashable, but tuples are
+        if key in anagrams:
+            anagrams[key].append(s)
+        else:
+            anagrams[key] = [s]
+    return list(anagrams.values())
+```
+
+- Valid Parentheses
+  Problem: Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+  Techniques: Stack.
+
+```python
+def is_valid_parentheses(s):
+    # Mapping of closing to opening brackets
+    brackets_map = {")": "(", "}": "{", "]": "["}
+    stack = []
+
+    for char in s:
+        # if char is open bracket, push to stack
+        if char in brackets_map.values():
+            stack.append(char)
+        elif char in brackets_map:
+            if not stack or brackets_map[char] != stack.pop():
+                return False
+        else:
+            continue # for readability
+    return not stack
+```
+
+- Reverse Words in a String
+  Problem: Given an input string, reverse the string word by word.
+  Example: Input: "the sky is blue", Output: "blue is sky the".
+  Techniques: Two-pointer, Stack.
+
+```python
+# built-in
+def reverse_words(s):
+    return " ".join(reversed(s.split()))
+
+#
+def reverse_words_stack(s):
+    stack = []
+    i = 0
+    n = len(s)
+
+    while i < n:
+        if s[i] != ' ':
+            start = i
+            while i < n and s[i] != ' ':
+                i += 1
+            stack.append(s[start:i])
+        i += 1
+
+    # Build the reversed string by popping from the stack
+    return ' '.join(reversed(stack))
 ```

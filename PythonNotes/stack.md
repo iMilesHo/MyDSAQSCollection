@@ -1,7 +1,9 @@
 # Stack in Python
+
 - Last In First Out (LIFO) data structure
 
 ## Stack Operations
+
 - `push(item)`: add an item to the stack
 - `pop()`: remove the top item from the stack
 - `peek()`: return the top item in the stack
@@ -9,6 +11,7 @@
 - `size()`: return the number of items in the stack
 
 ## Stack Implementation
+
 ```python
 class Stack:
     def __init__(self):
@@ -44,9 +47,25 @@ print(s.size())  # Output: 2
 ```
 
 ## Practice uses of Stacks
+
 - Function call stack: to store function calls in memory
 - Expression evaluation: to convert infix expressions to postfix
 - Undo mechanism: to store the history of actions for undoing
 - Depth First Search (DFS) algorithm: to hold a list of nodes to visit
 - Syntax parsing: to check the validity of parentheses in expressions
 
+## Cheat Sheet
+
+```python
+# using list
+stack = []
+# push
+stack.append(item)
+# pop
+stack.pop()
+# peek
+stack[-1]
+# is_empty
+len(stack) == 0
+
+```
