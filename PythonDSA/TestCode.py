@@ -1,30 +1,20 @@
 from typing import List, Optional
 from traitlets import Int
+from collections import Counter, defaultdict
 
-class TreeNode:
-    def __init__(self, value=0, left=None, right=None):
-        self.value = value
-        self.left = left
-        self.right = right
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        ans = ""
+        for center_index in range(len(s)):
+            start = end = center_index
+            while start >= 0 and end <= len(s):
+                temp = s[start:end]
+                if temp == temp[::-1] and len(temp) > len(ans):
+                    ans = temp
+                start -= 1
+                end += 1
+        return ans
 
-def convert_to_doubly_linked_list(root: TreeNode) -> TreeNode:
-    if not root:
-        return None
-    head, prev = None, None
-
-    def inorder_traversal(curr: TreeNode):
-        if not curr:
-            return curr
-        inorder_traversal(curr.left)
-
-        if not prev:
-            head = curr
-        else:
-            prev.right = curr
-            curr.left = prev
-        
-        prev = curr
-        inorder_traversal(curr.right)
-    inorder_traversal(root)
-    return head
-
+# Test
+s = Solution()
+print(s.longestPalindrome("babad")) # "bab" or "aba"

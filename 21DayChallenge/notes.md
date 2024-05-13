@@ -1,3 +1,5 @@
+# Guidance: https://formation.dev/guide/
+
 # Day 1
 
 Given a linked list, delete the middle node. If the list is even length, delete the node at the start of the second half of the list.
