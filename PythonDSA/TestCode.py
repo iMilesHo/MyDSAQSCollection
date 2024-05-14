@@ -2,17 +2,30 @@ from typing import List, Optional
 from traitlets import Int
 from collections import Counter, defaultdict, deque
 
-def two_sum(nums, target):
-    complementarys = {}
-    for i in range(len(nums)):
-        complementary = target - nums[i]
-        if complementary not in complementarys:
-            complementarys[nums[i]] = i
-        else:
-            return [complementarys[complementary],i]
-    return []
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s = set(nums)
+        longest = 0
+        while len(s) > 0:
+            temp = s.pop()
+            length = 1
 
-# test
-nums = [2,7,11,15]
-target = 9
-print(two_sum(nums,target))
+            temp1 = temp
+            while temp1 + 1 in s:
+                length += 1
+                temp1 += 1
+                s.remove(temp1)
+            
+            while temp - 1 in s:
+                length += 1
+                temp -= 1
+                s.remove(temp)
+                
+            if length > longest:
+                longest = length
+        return longest
+    
+
+sol = Solution()
+nums = [1, 0, -1]
+print(sol.longestConsecutive(nums))
