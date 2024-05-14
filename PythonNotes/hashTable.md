@@ -135,3 +135,91 @@ my_dict[frozenset(my_list)] = "value"
 ```
 
 - use .get() method to avoid KeyError
+
+# Cheat Sheet
+
+```python
+# Item In common
+def item_in_common(list1, list2):
+    return list(set(list1) & set(list2))
+
+# find duplicates
+def find_duplicates(nums):
+    seen = set()
+    duplicates = set()
+    for num in nums:
+        if num in seen:
+            duplicates.add(num)
+        seen.add(num)
+    return list(duplicates)
+
+# first non-repeating character
+def first_non_repeating_char(s):
+    seen = set()
+    dupliacted = set()
+    for i in s:
+        if i in seen:
+            dupliacted.add(i)
+        else:
+            seen.add(i)
+    for i in s:
+        if i not in dupliacted:
+            return i
+    return None
+# or
+def first_non_repeating_char(s):
+    seen = {}
+    for i in s:
+        if i in seen:
+            seen[i] += 1
+        else:
+            seen[i] = 1
+    # the order of the dictionary is preserved in Python 3.7+
+    for i in s:
+        if seen[i] == 1:
+            return i
+    return None
+
+# Group Anagrams
+def group_anagrams(strs):
+    anagrams = {}
+    for s in strs:
+        key = "".join(sorted(s))
+        if key not in anagrams:
+            anagrams[key] = []
+        anagrams[key].append(s)
+    return list(anagrams.values())
+
+# Two sum
+def two_sum(nums, target):
+    complementarys = {}
+    for i in range(len(nums)):
+        complementary = target - nums[i]
+        if complementary not in complementarys:
+            complementarys[nums[i]] = i
+        else:
+            return [complementarys[complementary],i]
+    return []
+#or
+def two_sum(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        if target - num in seen:
+            return [seen[target - num], i]
+        seen[num] = i
+    return []
+
+# target subarray sum
+def target_subarray_sum(nums, target):
+    seen = {}
+    current_sum = 0
+    for i, num in enumerate(nums):
+        current_sum += num
+        if current_sum == target:
+            return nums[:i + 1]
+        if current_sum - target in seen:
+            return nums[seen[current_sum - target] + 1:i + 1]
+        seen[current_sum] = i
+    return []
+
+```
