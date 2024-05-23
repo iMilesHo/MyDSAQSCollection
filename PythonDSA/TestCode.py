@@ -2,49 +2,38 @@ from typing import List, Optional
 from traitlets import Int
 from collections import Counter, defaultdict, deque
 
-# 76. Minimum Window Substring
+def shortestCellPath(grid, sr, sc, tr, tc):
+  from collections import deque
+  Rows = len(grid) # 3
+  Columns = len(grid[0]) # 4
+  bfs_queue = deque() 
+  bfs_queue.append((sr,sc,0)) # [(0,0,0)]
+  seen = set()
+  seen.add((sr,sc)) # {(0, 0)}
+  
+  while len(bfs_queue) > 0:
+    r, c, depth = bfs_queue.popleft()
+    if r == tr and c == tc:
+      return depth
+    for (i_r, i_c) in [(r+1, c), (r-1, c), (r, c+1), (r, c-1)]: # [(1, 0), (-1, 0), (0, 1), (0, -1)]
+      if 0 <= i_r < Rows and 0 <= i_c < Columns and grid[i_r][i_c] == 1 and (i_r, i_c) not in seen:
+        bfs_queue.append((i_r, i_c, depth+1))
+  return -1
 
-# Given two strings s and t of lengths m and n respectively, return the minimum window 
-# substring
-#  of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+    
 
-class Solution:
-    def isMet(self, t: str, s: str) -> bool:
-        t_c = Counter(t)
-        s_c = Counter(s)
-        for k, v in t_c.items():
-            if s_c[k] < v:
-                return False
-        return True
-    def minWindow(self, s: str, t: str) -> str:
-        if len(s) < len(t):
-            return ""
-        
-        if not self.isMet(t, s):
-            return ""
-        min_ans = s
-        def helper(s1):
-            nonlocal min_ans
-            if len(min_ans) > len(s1):
-                min_ans = s1
-            
-            left = right = s1
-            if len(s1[1:]) >= len(t) and self.isMet(t, s1[1:]):
-                left = helper(s1[1:])
-            if len(s1[:-1]) >= len(t) and self.isMet(t, s1[:-1]):
-                right = helper(s1[:-1])
-            
-            ans = s1
-            if left and left < ans:
-                ans = left
-            if right and right < ans:
-                ans = right
-            return ans
-        helper(s)
-        return min_ans
-        
+"""
+[
+[1, 1, 1, 1], 
+[0, 0, 0, 1], 
+[1, 1, 1, 1]
+]
+"""
+
 # test
-s = "acbbaca"
-t = "aba"
-sol = Solution()
-print(sol.minWindow(s, t)) # "BANC"
+grid = [[1, 1, 1, 1], [0, 0, 0, 1], [1, 1, 1, 1]]
+sr = 0
+sc = 0
+tr = 2
+tc = 0
+print(shortestCellPath(grid, sr, sc, tr, tc)) # 8
