@@ -21,6 +21,22 @@ Disadvantages of trees:
 - more memory is required to store the tree structure
 - trees can be slow to search if the tree is not balanced
 
+## Binary Tree depth and number of nodes
+
+```python
+# tree example
+#       1
+#      / \
+#     2   3
+#    / \ / \
+#   4  5 6  7
+```
+
+- the depth: n
+- the number of nodes: 2^n - 1
+- the number of leaf nodes: 2^(n-1)
+- n = log2(N+1) where N is the number of nodes
+
 ## Classic Problems
 
 ```python
