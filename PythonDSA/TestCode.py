@@ -2,21 +2,47 @@ from typing import List, Optional
 from traitlets import Int
 from collections import Counter, defaultdict, deque
 
-def HackerRank(s):
-  if not s or s == "":
-    return 0
-  stack = []
-  for c in s:
-    if len(stack) > 0 and ((c == '0' and stack[-1] == '1') or (c == '1' and stack[-1] == '0')):
-      stack.pop()
-    else:
-      stack.append(c)
-  return len(stack)
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows = len(board)
+        cols = len(board[0])
+        from collections import deque        
 
+        for i in range(rows):
+            for j in range(cols):
+                queue = deque()
+                seen = set()
+                queue.append((i,j,0))
+                while len(queue) > 0: 
+                    print("queue", queue)
+                    r, c, idx = queue.popleft() 
+                    if not (idx < len(word) and 0 <= r < rows and 0 <=c < cols and board[r][c] == word[idx]):
+                        continue
+                    if idx == len(word) - 1: 
+                        return True
+                    seen.add((r,c,idx)) 
+                    print("seen", seen)
+                    if 0 <= r + 1 < rows and 0 <= c < cols and (r+1, c, idx+1) not in seen:
+                        queue.append((r+1, c, idx+1))
+                    if 0 <= r < rows and 0 <= c + 1 < cols and (r, c+1, idx+1) not in seen:
+                        queue.append((r, c+1, idx+1))
+                    if 0 <= r - 1 < rows and 0 <= c < cols and (r-1, c, idx+1) not in seen:
+                        queue.append((r-1, c, idx+1))
+                    if 0 <= r < rows and 0 <= c - 1 < cols and (r, c-1, idx+1) not in seen:
+                        queue.append((r, c-1, idx+1))
+        return False
 
-# test cases
-print(HackerRank("1100")) # 0
-print(HackerRank("1111")) # 4
-print(HackerRank("01010")) # 1
-print(HackerRank("010101")) # 0
-print(HackerRank("111&000")) # 0
+board = [["a","a"]]
+word = "aaa"
+
+sol = Solution()
+print(sol.exist(board, word))
+
+"""
+[
+    ["A","B","C","E"],
+    ["S","F","E","S"],
+    ["A","D","E","E"]
+]
+ABCESEEEFS
+"""
