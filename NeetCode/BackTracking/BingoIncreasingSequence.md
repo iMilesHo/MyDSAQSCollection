@@ -1,11 +1,14 @@
-from typing import List, Optional
-from traitlets import Int
-from collections import Counter, defaultdict, deque
+# Bingo Increasing Sequence
 
-"""
+## Problem Statement
+
+Given a 2D grid of size m x n. You need to find the number of strictly increasing sequences of consecutive numbers in the grid. The sequence should have length >= 2. The sequence should be increasing in row-wise or column-wise in the grid.
+
+## Example
+
 Grid = [
-    [1,2],
-    [3,4]
+[1,2],
+[3,4]
 ]
 
 consecutive increasing numbers sequence of length >= 2:
@@ -16,8 +19,12 @@ consecutive increasing numbers sequence of length >= 2:
 [2,4]
 [3,4]
 so the answer is 6
-"""
 
+the output should be 6
+
+## Solution
+
+```python
 def find_increasing_sequences(grid):
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     rows, cols = len(grid), len(grid[0])
@@ -32,7 +39,7 @@ def find_increasing_sequences(grid):
         if len(path) > 1:
             result.append(path.copy())
             res_count += 1
-        
+
         for dx, dy in directions:
             nx, ny = x + dx, y + dy
             if is_valid(nx, ny) and grid[nx][ny] > grid[x][y]:
@@ -55,4 +62,4 @@ grid = [
 # Find all increasing sequences
 sequences = find_increasing_sequences(grid)
 print("Found sequences:", sequences[1])
-# print("Number of sequences:", len(sequences))
+```
