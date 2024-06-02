@@ -24,6 +24,8 @@ the output should be 6
 
 ## Solution
 
+### Record the increasing sequences
+
 ```python
 def find_increasing_sequences(grid):
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -62,4 +64,33 @@ grid = [
 # Find all increasing sequences
 sequences = find_increasing_sequences(grid)
 print("Found sequences:", sequences[1])
+```
+
+### Just count the increasing sequences
+
+Notes: so this is just a dfs search, no backtracking is needed
+
+```python
+def find_increasing_sequences(grid: List[List[int]]) -> int:
+    ROWS, COLS = len(grid), len(grid[0])
+    # explore direction
+    explore_dir = [(1,0), (-1,0), (0,1), (0,-1)]
+    res = 0
+
+    def exploreable(r,c):
+        return 0 <= r < ROWS and 0 <= c < COLS
+
+    def dfs(r, c, psn): # 1, 1, 3
+        nonlocal res
+        if psn >= 2:
+            res += 1 # 2
+        for ar, ac in explore_dir:
+            nr, nc = r+ar,c+ac #
+            if exploreable(nr, nc) and grid[nr][nc] > grid[r][c]:
+                dfs(nr,nc,psn+1) # 1, 1, 3
+        return
+    for i in range(ROWS):
+        for j in range(COLS):
+            dfs(i, j, 1)
+    return res
 ```
