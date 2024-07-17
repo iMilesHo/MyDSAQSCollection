@@ -1,44 +1,21 @@
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        if len(nums) <= 3:
-            if target in nums:
-                return nums.index(target)
-            else:
-                return -1
-
-        left, right = 0, len(nums) - 1
-        mid = (left + right) // 2
-        while left <= right:
-            if nums[mid] > nums[-1]:
-                left = mid + 1
-                mid = (left + right) // 2
-            else:
-                right = mid - 1
-                mid = (left + right) // 2
-        minimum_index = left
-
-        # 0, minimum_index - 1
-        left, right = 0, minimum_index - 1
-        mid = (left + right) // 2
-        while left <= right:
-            if nums[mid] == target:
-                return mid
-            elif nums[mid] < target:
-                left = mid + 1
-                mid = (left + right) // 2
-            else:
-                right = mid - 1
-                mid = (left + right) // 2
-        # minimum_index, len(nums) - 1
-        left, right = minimum_index, len(nums) - 1
-        mid = (left + right) // 2
-        while left <= right:
-            if nums[mid] == target:
-                return mid
-            elif nums[mid] < target:
-                left = mid + 1
-                mid = (left + right) // 2
-            else:
-                right = mid - 1
-                mid = (left + right) // 2
-        return -1
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # Function to find the length of LIS ending with the last element included
+        def findLIS(index, prev):
+            # Base case: If we've processed all elements
+            if index == len(nums):
+                return 0
+            
+            # Case 1: Exclude the current element and move to the next element
+            taken = 0
+            if nums[index] > prev:
+                # Case 2: Include the current element if it is greater than the previous element in the LIS
+                taken = 1 + findLIS(index + 1, nums[index])
+            
+            not_taken = findLIS(index + 1, prev)
+            
+            # Return the maximum of including or not including the current element
+            return max(taken, not_taken)
+        
+        # Start the recursion with index 0 and a very small previous value
+        return findLIS(0, float('-inf'))
