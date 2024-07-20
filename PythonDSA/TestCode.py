@@ -1,21 +1,25 @@
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        # Function to find the length of LIS ending with the last element included
-        def findLIS(index, prev):
-            # Base case: If we've processed all elements
-            if index == len(nums):
-                return 0
-            
-            # Case 1: Exclude the current element and move to the next element
-            taken = 0
-            if nums[index] > prev:
-                # Case 2: Include the current element if it is greater than the previous element in the LIS
-                taken = 1 + findLIS(index + 1, nums[index])
-            
-            not_taken = findLIS(index + 1, prev)
-            
-            # Return the maximum of including or not including the current element
-            return max(taken, not_taken)
-        
-        # Start the recursion with index 0 and a very small previous value
-        return findLIS(0, float('-inf'))
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row_sets_list = [set() for _ in range(9)]
+        col_sets_list = [set() for _ in range(9)]
+        sub3t3_sets_list = [set() for _ in range(9)]
+        for i in range(9):
+            for j in range(9):
+                temp = board[i][j]
+                if temp == ".":
+                    continue
+                if temp not in row_sets_list[i]:
+                    row_sets_list[i].add(temp)
+                else:
+                    return False
+                if temp not in col_sets_list[j]:
+                    col_sets_list[j].add(temp)
+                else:
+                    return False
+                
+                sub_3t3_index = int(i/3)*3 + int(j/3)
+                if temp not in sub3t3_sets_list[sub_3t3_index]:
+                    sub3t3_sets_list[sub_3t3_index].add(temp)
+                else:
+                    return False
+        return True
