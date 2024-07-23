@@ -1,25 +1,19 @@
 class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
-        row_sets_list = [set() for _ in range(9)]
-        col_sets_list = [set() for _ in range(9)]
-        sub3t3_sets_list = [set() for _ in range(9)]
-        for i in range(9):
-            for j in range(9):
-                temp = board[i][j]
-                if temp == ".":
-                    continue
-                if temp not in row_sets_list[i]:
-                    row_sets_list[i].add(temp)
-                else:
-                    return False
-                if temp not in col_sets_list[j]:
-                    col_sets_list[j].add(temp)
-                else:
-                    return False
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        def isExist(ans, new):
+            set_new = set(new)
+            for i in ans:
+                set1 = set(i)
+                if set_new == set1:
+                    return True
+            return False
                 
-                sub_3t3_index = int(i/3)*3 + int(j/3)
-                if temp not in sub3t3_sets_list[sub_3t3_index]:
-                    sub3t3_sets_list[sub_3t3_index].add(temp)
-                else:
-                    return False
-        return True
+        ans = []
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                for k in range(j+1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == 0:
+                        new = [nums[i],nums[j],nums[k]]
+                        if not isExist(ans, new):
+                            ans.append(new)
+        return ans
