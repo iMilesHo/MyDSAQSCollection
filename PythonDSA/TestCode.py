@@ -1,19 +1,26 @@
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        def isExist(ans, new):
-            set_new = set(new)
-            for i in ans:
-                set1 = set(i)
-                if set_new == set1:
-                    return True
-            return False
-                
+    def is_the_same_anagrams(self, ans, current):
+        list_current = list(current)
+        list_current.sort()
+        is_grouped = False
+        for i in ans:
+            if len(i[0]) != len(list_current):
+                continue
+            temp = list(i[0])
+            temp.sort()
+            is_the_same_anagrams = True
+            for cur_i, temp_i in zip(list_current, temp):
+                if cur_i != temp_i:
+                    is_the_same_anagrams = False
+                    break
+            if is_the_same_anagrams:
+                i.append(current)
+                is_grouped = True
+                break
+        if not is_grouped:
+            ans.append([current])
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         ans = []
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                for k in range(j+1, len(nums)):
-                    if nums[i] + nums[j] + nums[k] == 0:
-                        new = [nums[i],nums[j],nums[k]]
-                        if not isExist(ans, new):
-                            ans.append(new)
+        for i in strs:
+            self.is_the_same_anagrams(ans, i)
         return ans
