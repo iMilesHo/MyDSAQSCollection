@@ -1,26 +1,30 @@
-class Solution:
-    def is_the_same_anagrams(self, ans, current):
-        list_current = list(current)
-        list_current.sort()
-        is_grouped = False
-        for i in ans:
-            if len(i[0]) != len(list_current):
-                continue
-            temp = list(i[0])
-            temp.sort()
-            is_the_same_anagrams = True
-            for cur_i, temp_i in zip(list_current, temp):
-                if cur_i != temp_i:
-                    is_the_same_anagrams = False
-                    break
-            if is_the_same_anagrams:
-                i.append(current)
-                is_grouped = True
-                break
-        if not is_grouped:
-            ans.append([current])
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        ans = []
-        for i in strs:
-            self.is_the_same_anagrams(ans, i)
-        return ans
+class TimeMap:
+
+    def __init__(self):
+        self.container = {}
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.container.keys():
+            self.container[key] = [(value, timestamp)]
+        else:
+            self.container[key].append((value,timestamp))
+
+    def get(self, key: str, timestamp: int) -> str:
+        if key not in self.container.keys():
+            return ""
+        value_timestamp_list = self.container[key]
+        if value_timestamp_list[0][1] > timestamp:
+            return ""
+
+        left, right = 0, len(value_timestamp_list) - 1
+        mid = (left + right) // 2
+        while left <= right:
+            if value_timestamp_list[mid][1] == timestamp:
+                return value_timestamp_list[mid][0]
+            elif value_timestamp_list[mid][1] < timestamp:
+                left = mid + 1
+                mid = (left + right) // 2
+            else:
+                right = mid - 1
+                mid = (left + right) // 2
+        return value_timestamp_list[right][0]   
