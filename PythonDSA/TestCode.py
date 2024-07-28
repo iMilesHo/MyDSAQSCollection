@@ -1,19 +1,22 @@
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return nums[0]
-        if len(nums) == 2:
-            return min(nums)
-            
-        left = 0
-        right = len(nums) - 1
-        mid = (left + right) // 2
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        if grid[0][0] == 1:
+            return -1
+        from collections import deque
+        Rows = len(grid) # 3
+        Columns = len(grid[0]) # 4
+        sr,sc,tr,tc = 0, 0, Rows - 1, Columns - 1
+        bfs_queue = deque()
+        bfs_queue.append((sr,sc,1)) # [(0,0,1)]
+        seen = set()
+        seen.add((sr,sc)) # {(0, 0)}
 
-        while left <= right:
-            if nums[mid] > nums[-1]:
-                left = mid + 1
-                mid = (left + right) // 2
-            else:
-                right = mid - 1
-                mid = (left + right) // 2
-        return nums[left]   
+        while len(bfs_queue) > 0:
+            r, c, depth = bfs_queue.popleft()
+            if r == tr and c == tc:
+                return depth
+            for (i_r, i_c) in [(r+1, c), (r-1, c), (r, c+1), (r, c-1), (r+1,c+1), (r-1,c+1), (r+1,c-1),(r-1,c-1)]: # [(1, 0), (-1, 0), (0, 1), (0, -1)]
+                if 0 <= i_r < Rows and 0 <= i_c < Columns and grid[i_r][i_c] == 0 and (i_r, i_c) not in seen:
+                    bfs_queue.append((i_r, i_c, depth+1))
+                    seen.add((i_r, i_c))
+        return -1
