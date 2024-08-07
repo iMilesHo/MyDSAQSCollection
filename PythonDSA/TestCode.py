@@ -1,22 +1,46 @@
-class Solution:
-    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        if grid[0][0] == 1:
-            return -1
-        from collections import deque
-        Rows = len(grid) # 3
-        Columns = len(grid[0]) # 4
-        sr,sc,tr,tc = 0, 0, Rows - 1, Columns - 1
-        bfs_queue = deque()
-        bfs_queue.append((sr,sc,1)) # [(0,0,1)]
-        seen = set()
-        seen.add((sr,sc)) # {(0, 0)}
+  from collections import defaultdict
 
-        while len(bfs_queue) > 0:
-            r, c, depth = bfs_queue.popleft()
-            if r == tr and c == tc:
-                return depth
-            for (i_r, i_c) in [(r+1, c), (r-1, c), (r, c+1), (r, c-1), (r+1,c+1), (r-1,c+1), (r+1,c-1),(r-1,c-1)]: # [(1, 0), (-1, 0), (0, 1), (0, -1)]
-                if 0 <= i_r < Rows and 0 <= i_c < Columns and grid[i_r][i_c] == 0 and (i_r, i_c) not in seen:
-                    bfs_queue.append((i_r, i_c, depth+1))
-                    seen.add((i_r, i_c))
-        return -1
+  # Initialize the character count map
+  char_count = defaultdict(int)
+  required_chars = len(arr)
+  left, right = 0, 0
+  min_length = float('inf')
+  min_substr = ""
+  unique_chars = 0
+
+
+  # Populate the character count map with the characters in arr
+  for char in arr:
+    char_count[char] = 0
+
+  while right < len(str):
+
+    # Expand the window by including the character at right index
+    if str[right] in char_count:
+      if char_count[str[right]] == 0:
+        unique_chars += 1
+      char_count[str[right]] += 1
+
+
+
+    while unique_chars == required_chars:
+      if right - left + 1 < min_length:
+        min_length = right - left + 1
+        min_substr = str[left:right+1]
+        # update the min_subst
+      if str[left] in char_count:
+        char_count[str[left]] -= 1
+        if char_count[str[left]] == 0:
+          unique_chars -= 1
+      left += 1
+
+    right += 1
+    # check if the new substing is minimum
+
+  return min_substr
+
+
+# Example usage:
+arr = ['x', 'y', 'z']
+str = "xyyzyzyx"
+print(get_shortest_unique_substring(arr, str))  # Output: "zyx"
