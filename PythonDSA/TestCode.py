@@ -1,15 +1,14 @@
-class Solution:
-    def guessNumber(self, n: int) -> int:
-        left = 0
-        right = n
-        mid = int((left + right) / 2)
-        while left <= right:
-            if guess(mid) == 0:
-                return mid
-            elif guess(mid) == 1:
-                left = mid + 1
-                mid = int((left + right) / 2)
-            else:
-                right = mid - 1
-                mid = int((left + right) / 2)
-        return None
+import Foundation
+
+func countIntegers(n: Int, val: Int, arr: [Int]) -> [Int] {
+    let smaller = arr.filter { $0 < val }.count
+    let equal = arr.filter { $0 == val }.count
+    let greater = arr.filter { $0 > val }.count
+    return [smaller, equal, greater]
+}
+
+if let n = readLine(), let val = readLine(), let input = readLine() {
+    let arr = input.split(separator: " ").compactMap { Int($0) }
+    let result = countIntegers(n: Int(n)!, val: Int(val)!, arr: arr)
+    print(result.map { String($0) }.joined(separator: " "))
+}
