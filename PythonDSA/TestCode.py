@@ -1,14 +1,23 @@
-import Foundation
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # Binary search
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
 
-func countIntegers(n: Int, val: Int, arr: [Int]) -> [Int] {
-    let smaller = arr.filter { $0 < val }.count
-    let equal = arr.filter { $0 == val }.count
-    let greater = arr.filter { $0 > val }.count
-    return [smaller, equal, greater]
-}
+            if nums[mid] == target:
+                return mid
+            
+            # determine which side to check
+            if nums[left] <= nums[mid]:
+                if target >= nums[left] and target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if target <= nums[right] and target > nums[mid]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
 
-if let n = readLine(), let val = readLine(), let input = readLine() {
-    let arr = input.split(separator: " ").compactMap { Int($0) }
-    let result = countIntegers(n: Int(n)!, val: Int(val)!, arr: arr)
-    print(result.map { String($0) }.joined(separator: " "))
-}
+        return -1
