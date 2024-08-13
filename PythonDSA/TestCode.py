@@ -1,23 +1,18 @@
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        # Binary search
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            mid = (left + right) // 2
-
-            if nums[mid] == target:
-                return mid
-            
-            # determine which side to check
-            if nums[left] <= nums[mid]:
-                if target >= nums[left] and target < nums[mid]:
-                    right = mid - 1
-                else:
-                    left = mid + 1
-            else:
-                if target <= nums[right] and target > nums[mid]:
-                    left = mid + 1
-                else:
-                    right = mid - 1
-
-        return -1
+    def reverseVowels(self, s: str) -> str:
+        s = list(s)
+        vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+        far_left = 0
+        far_right = len(s) - 1
+        while far_left < far_right:
+            if s[far_left] in vowels and s[far_right] in vowels:
+                temp = s[far_right]
+                s[far_right] = s[far_left]
+                s[far_left] = temp
+                far_left += 1
+                far_right -= 1
+            if s[far_left] not in vowels:
+                far_left += 1
+            if s[far_right] not in vowels:
+                far_right -= 1
+        return "".join(s)
