@@ -1,18 +1,31 @@
 class Solution:
-    def reverseVowels(self, s: str) -> str:
-        s = list(s)
-        vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
-        far_left = 0
-        far_right = len(s) - 1
-        while far_left < far_right:
-            if s[far_left] in vowels and s[far_right] in vowels:
-                temp = s[far_right]
-                s[far_right] = s[far_left]
-                s[far_left] = temp
-                far_left += 1
-                far_right -= 1
-            if s[far_left] not in vowels:
-                far_left += 1
-            if s[far_right] not in vowels:
-                far_right -= 1
-        return "".join(s)
+    def binarySearch(self, nums: List[int], target) -> int:
+        left = 0
+        right = len(nums)-1
+        while left <= right:
+            mid = (right + left) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return -1
+
+
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        temp = target // 2
+        if nums.count(temp) >= 2:
+            index1 = nums.index(temp)
+            index2 = nums.index(temp, index1+1)
+            return [index1, index2]
+
+        nums_copy = nums.copy()
+        nums.sort()
+        for i in range(len(nums)):
+            temp = target - nums[i]
+            temp_index = self.binarySearch(nums,temp)
+            if temp_index == -1:
+                continue
+            if temp_index != i:
+                return [nums_copy.index(nums[i]), nums_copy.index(nums[temp_index])]
