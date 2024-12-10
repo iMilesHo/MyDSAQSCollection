@@ -1,48 +1,79 @@
-## My Data Structure and Algorithm Questions and Solutions
+Below is a structured roadmap of topics commonly tested in technical coding interviews, organized into tiers based on their frequency, foundational importance, and the urgency with which we should master them. This prioritization is a general guideline—individual preferences and company-specific focuses may vary, but it’s a good starting point.
 
-Hey guys, this is my collection of data structure and algorithm questions and solutions. I will be adding more questions and solutions as I solve them. I hope this collection helps you in your preparation for interviews and competitive programming.
+Tier 1 (High Priority & Immediate Focus)
 
-## Online Resources
+Why These First?
+They are the most frequently tested and form the foundation for solving more complex problems. Mastery here will give we a solid base to tackle a wide range of interview questions.
+1.	Arrays & Strings
+- Common operations (iteration, manipulation)
+- Prefix sums, sliding window techniques, two-pointer strategies
+- String pattern searching, substring problems
+2.	Hashing & Dictionaries (Maps), Sets
+- Using hash maps/sets for O(1) look-ups
+- Frequency counting, duplicates detection, and grouping problems
+3.	Sorting & Searching
+- Sorting algorithms and their complexities
+- Binary search on sorted arrays, search patterns
+4.	Stacks & Queues
+- Validating parentheses, next greater element
+- Breadth-first searches (leveraging queues), stack-based problem solving
 
-- https://coderpad.io/
-- https://leetcode.com/
-- https://www.hackerrank.com/
-- https://www.interviewbit.com/
-- https://www.geeksforgeeks.org/
-- https://www.programiz.com/
+Tier 2 (Moderate Priority & Next Steps)
 
-## Table of Contents
+Why These Next?
+These structures and techniques appear often, sometimes as part of more complex problems. They build upon wer Tier 1 understanding.
+1.	Linked Lists
+- Reversal of lists, cycle detection, merging and splitting lists
+2.	Trees
+- Binary tree traversal (in-order, pre-order, post-order)
+- Binary Search Tree operations (insertion, deletion, search)
+- Common tree problems like finding height, diameter, lowest common ancestor
+3.	Graphs
+- Basics: Graph representations (adjacency list/matrix)
+- Traversal: Breadth-first search (BFS), Depth-first search (DFS)
+- Fundamental graph problems (connected components, cycle detection)
+4.	Recursion & Backtracking
+- DFS-based solutions for subsets, permutations, combinations
+- Constraint satisfaction problems (e.g., N-Queens, Sudoku solver)
+5.	Greedy Algorithms
+- Interval scheduling, activity selection
+- Common greedy patterns (choosing minimum/maximum first, sorting by a criterion)
+6.	Intervals & Sweep Line Techniques
+- Merging intervals, checking overlaps, interval scheduling
+7.	Heaps / Priority Queues
+- Finding kth smallest/largest element
+- Merging multiple sorted lists, scheduling tasks by priority
 
-1. [Arrays](#arrays)
+Tier 3 (Advanced Concepts)
 
-- [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/description/)
-- [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/description)
-- [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/)
-- [2215. Find the Difference of Two Arrays](https://leetcode.com/problems/find-the-difference-of-two-arrays/description/)
-- [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/description/)
-- [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/description/)
-- [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/description/)
-- [290. Word Pattern](https://leetcode.com/problems/word-pattern/description/)
-- [1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately/description/)
-- [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/description/)
-- [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/description/)
-- [605. Can Place Flowers](https://leetcode.com/problems/can-place-flowers/description/)
-- [345. Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/description/)
-- [151. Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/description/)
-- [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/description/)
+Why These Later?
+These topics are often tested for more senior roles or top-tier companies. While mastery can distinguish we, we won’t encounter them in every interview.
+1.	Dynamic Programming (DP)
+- Classic patterns: Knapsack, Fibonacci variants, grid-based DP
+- Understanding subproblems, memoization, and tabulation
+2.	Advanced Graph Concepts
+- Topological sort
+- Union-Find/Disjoint Set for cycle detection in undirected graphs
+- Shortest paths (Dijkstra, Bellman-Ford) if relevant
+3.	Tries (Prefix Trees)
+- Word search, autocomplete features
+- Efficient prefix queries on strings
+4.	Segment Trees & Binary Indexed Trees (Fenwick Trees)
+- Range queries (range sum, range minimum/maximum)
+- Updating elements and querying results in O(log n)
+5.	Bit Manipulation
+- Basic operations, common tricks (parity check, bit masks)
 
-2. [Strings](#strings)
-3. [Linked Lists](#linked-lists)
-4. [Stacks](#stacks)
-5. [Queues](#queues)
-6. [Trees](#trees)
-7. [Graphs](#graphs)
-8. [Dynamic Programming](#dynamic-programming)
-9. [Bit Manipulation](#bit-manipulation)
-10. [Math](#math)
-11. [Hashing](#hashing)
-12. [Greedy](#greedy)
-13. [Backtracking](#backtracking)
-14. [Divide and Conquer](#divide-and-conquer)
-15. [Sorting and Searching](#sorting-and-searching)
-16. [Miscellaneous](#miscellaneous)
+Tier 4 (Nice-to-Have / Advanced Rounds)
+
+Why These Last?
+They are either less commonly tested in standard coding interviews or more relevant to system design or highly specialized roles.
+1.	Advanced Data Structures
+- Balanced Trees (AVL, Red-Black Trees) – rarely required explicitly, but conceptually helpful
+2.	System Design Concepts
+- While not a data structure/algorithm per se, understanding the scalability of solutions and some high-level architectures can be beneficial in later-stage interviews.
+
+Final Advice:
+- Master Tier 1 first, as these fundamentals repeat in many problems.
+- Progress to Tier 2 to build breadth.
+- If time allows, delve into Tier 3 and Tier 4 to gain a competitive edge.
